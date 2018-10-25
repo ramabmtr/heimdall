@@ -1,6 +1,6 @@
 # Heimdall
 
-<p align="center"><img src="doc/heimdall.jpg" width="360"></p>
+<p align="center"><img src="doc-asset/heimdall.jpg" width="360"></p>
 
 A flexible service to handle OTP
 
