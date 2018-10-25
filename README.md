@@ -40,8 +40,6 @@ You can use database below and config them using environment variable (`DATABASE
   |----------------------------|---------|-------|
   | MEMCACHED_CLEANUP_INTERVAL | 600000  | in ms |
 
-For more database, use this guideline.
-
 
 #### 3rd Party Service
 
@@ -50,6 +48,8 @@ You can use this service below to send OTP. Configurable via payload in API call
 - [Twilio](repository/external/twilio), service name: `twilio`
 - [Nexmo](repository/external/nexmo), service name: `nexmo`
 - [Postmark](repository/external/postmark), service name: `postmark`
+
+### [Add more component?](COMPONENT.md)
 
 ## Endpoint
 
