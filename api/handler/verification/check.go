@@ -10,7 +10,6 @@ import (
 
 type (
 	checkVerificationParams struct {
-		Service  string      `json:"service"`
 		Code     string      `json:"code" validate:"required"`
 		CheckKey interface{} `json:"check_key" validate:"required"`
 	}
@@ -26,7 +25,7 @@ func Check(c echo.Context) error {
 	}
 
 	verificationDB := GetVerificationDB(c)
-	verificationRepo := GetVerificationRepo(c, params.Service, verificationDB)
+	verificationRepo := GetVerificationRepo(c, verificationDB)
 
 	verifyService := service.NewVerificationService(c, verificationRepo)
 

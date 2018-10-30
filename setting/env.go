@@ -12,7 +12,8 @@ func InitializeEnvVar() {
 	config.AppDebug = environ.GetEnv("APP_DEBUG").Default("1").ToBool()
 	config.AppMode = strings.ToLower(environ.GetEnv("APP_MODE").Default("development").ToString())
 
-	config.DatabaseType = strings.ToLower(environ.GetEnv("DATABASE_TYPE").Default("redis").ToString())
+	config.VerificationDatabaseType = strings.ToLower(environ.GetEnv("DATABASE_TYPE").Default("redis").ToString())
+	config.VerificationServiceType = strings.ToLower(environ.GetEnv("SERVICE_TYPE").Default("").ToString())
 
 	config.OtpExpiryTime = environ.GetEnv("OTP_EXPIRY_TIME").Default("5").ToInt()
 }

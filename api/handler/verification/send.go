@@ -18,7 +18,6 @@ import (
 
 type (
 	sendVerificationParams struct {
-		Service string      `json:"service"`
 		SendTo  interface{} `json:"send_to" validate:"required"`
 	}
 )
@@ -33,7 +32,7 @@ func Send(c echo.Context) error {
 	}
 
 	verificationDB := GetVerificationDB(c)
-	verificationRepo := GetVerificationRepo(c, params.Service, verificationDB)
+	verificationRepo := GetVerificationRepo(c, verificationDB)
 
 	verifyService := service.NewVerificationService(c, verificationRepo)
 
@@ -49,7 +48,7 @@ func Send(c echo.Context) error {
 }
 
 func GetVerificationDB(ctx echo.Context) (verificationDB model.VerificationDatabaseRepository) {
-	switch config.DatabaseType {
+	switch config.VerificationDatabaseType {
 	case config.DBTypeMemCached:
 		verificationDB = memcached.NewVerificationDatabaseRepository(ctx)
 	case config.DBTypeRedis:
@@ -63,10 +62,9 @@ func GetVerificationDB(ctx echo.Context) (verificationDB model.VerificationDatab
 
 func GetVerificationRepo(
 	ctx echo.Context,
-	serviceName string,
 	vDB model.VerificationDatabaseRepository,
 ) (verificationRepo model.VerificationRepository) {
-	switch serviceName {
+	switch config.VerificationServiceType {
 	case config.ServiceNamePostmark:
 		verificationRepo = postmark.NewVerificationRepository(ctx, vDB)
 	case config.ServiceNameNexmo:

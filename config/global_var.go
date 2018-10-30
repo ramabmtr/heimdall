@@ -10,7 +10,8 @@ var (
 	AppDebug   bool
 	AppMode    string
 
-	DatabaseType string
+	VerificationDatabaseType string
+	VerificationServiceType  string
 
 	OtpExpiryTime int
 

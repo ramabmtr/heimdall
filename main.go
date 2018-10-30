@@ -11,7 +11,11 @@ func main() {
 	setting.InitializeEnvVar()
 	setting.InitializeLogger()
 
-	switch config.DatabaseType {
+	if config.VerificationServiceType == "" {
+		log.GetLogger(nil).Fatal("SERVICE_TYPE not set!")
+	}
+
+	switch config.VerificationDatabaseType {
 	case config.DBTypeMemCached:
 		if err := setting.InitMemCached(); err != nil {
 			log.GetLogger(nil).WithError(err).Fatal("fail to connect to memcached")

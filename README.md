@@ -6,13 +6,14 @@ A flexible service to handle OTP
 
 ## ENV variable
 
-| ENV var name    | Default     | Note       |
-|-----------------|-------------|------------|
-| APP_ADDRESS     | :1323       |            |
-| APP_DEBUG       | 1           |            |
-| APP_MODE        | development |            |
-| DATABASE_TYPE   | redis       |            |
-| OTP_EXPIRY_TIME | 5           | in minutes |
+| ENV var name    | Default     | Note                                              |
+|-----------------|-------------|---------------------------------------------------|
+| APP_ADDRESS     | :1323       |                                                   |
+| APP_DEBUG       | 1           | available value: `0` or `1`                       |
+| APP_MODE        | development | available value: `development` or `production`    |
+| DATABASE_TYPE   | redis       | available value: `redis` or `memcached`           |
+| SERVICE_TYPE    | _empty_     | available value: `twilio`, `nexmo`, or `postmark` |
+| OTP_EXPIRY_TIME | 5           | in minutes                                        |
 
 ## Requirements
 
@@ -45,9 +46,9 @@ You can use database below and config them using environment variable (`DATABASE
 
 You can use this service below to send OTP. Configurable via payload in API call
 
-- [Twilio](repository/external/twilio), service name: `twilio`
-- [Nexmo](repository/external/nexmo), service name: `nexmo`
-- [Postmark](repository/external/postmark), service name: `postmark`
+- [Twilio](repository/external/twilio)
+- [Nexmo](repository/external/nexmo)
+- [Postmark](repository/external/postmark)
 
 ### [Add more component?](COMPONENT.md)
 
@@ -61,15 +62,13 @@ body:
 
 ```json
 {
-  "service": "<service name>",
   "send_to": "<service send_to>"
 }
 ```
 
 **NOTE:**
 
-- For `service name`, you can refer to [this section](#3rd-party-service)
-- For `service send_to`, you also can look in each link provided in [this section](#3rd-party-service)
+- For `service send_to`, you can look in each link provided in [this section](#3rd-party-service)
 
 return:
 
@@ -85,7 +84,6 @@ body:
 
 ```json
 {
-  "service": "<service name>",
   "code": "<verification code>",
   "check_key": "<service check_key>"
 }
@@ -93,8 +91,7 @@ body:
 
 **NOTE:**
 
-- For `service name`, you can refer to [this section](#3rd-party-service)
-- For `service check_key`, you also can look in each link provided in [this section](#3rd-party-service)
+- For `service check_key`, you can look in each link provided in [this section](#3rd-party-service)
 
 return:
 
