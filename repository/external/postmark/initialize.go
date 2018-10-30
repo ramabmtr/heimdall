@@ -22,9 +22,9 @@ var (
 )
 
 func init() {
-	serverToken = environ.GetEnv("POSTMARK_SERVER_TOKEN").Default("456403d5-67a1-4c2d-830b-045e2492621f").ToString()
-	accountToken = environ.GetEnv("POSTMARK_ACCOUNT_TOKEN").Default("c0d5a38c-c5a3-4a61-86eb-2b86a259e987").ToString()
-	sender = environ.GetEnv("POSTMARK_SENDER").Default("rama@prismapp.io").ToString()
+	serverToken = environ.GetEnv("POSTMARK_SERVER_TOKEN").Default("").ToString()
+	accountToken = environ.GetEnv("POSTMARK_ACCOUNT_TOKEN").Default("").ToString()
+	sender = environ.GetEnv("POSTMARK_SENDER").Default("").ToString()
 	subject = environ.GetEnv("POSTMARK_SUBJECT").Default("One Time Password").ToString()
 }
 
