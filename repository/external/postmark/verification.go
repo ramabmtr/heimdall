@@ -12,7 +12,7 @@ import (
 )
 
 type (
-	nexmoAuthRepository struct {
+	postmarkAuthRepository struct {
 		ctx echo.Context
 		db  model.VerificationDatabaseRepository
 	}
@@ -21,13 +21,13 @@ type (
 func NewVerificationRepository(ctx echo.Context, db model.VerificationDatabaseRepository) model.VerificationRepository {
 	initClient()
 
-	return &nexmoAuthRepository{
+	return &postmarkAuthRepository{
 		ctx: ctx,
 		db:  db,
 	}
 }
 
-func (c *nexmoAuthRepository) SendVerificationCode(v *model.Verification) error {
+func (c *postmarkAuthRepository) SendVerificationCode(v *model.Verification) error {
 	if client == nil {
 		return errPostmarkNotInitialized
 	}
@@ -76,7 +76,7 @@ func (c *nexmoAuthRepository) SendVerificationCode(v *model.Verification) error 
 	return nil
 }
 
-func (c *nexmoAuthRepository) CheckVerificationCode(check interface{}, code string) (bool, error) {
+func (c *postmarkAuthRepository) CheckVerificationCode(check interface{}, code string) (bool, error) {
 	email, ok := check.(string)
 	if !ok {
 		return false, errors.New("fail to parse send_to param")
